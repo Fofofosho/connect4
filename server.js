@@ -2,9 +2,11 @@
 
 const express = require("express");
 const path = require("path");
+const bodyparser = require("body-parser");
 const app = express();
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 // viewed at http://localhost:8080
 app.get('/', function(req, res) {
