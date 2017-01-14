@@ -12,13 +12,15 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/imgData', function(req, res) {
+app.post('/imgData', function(req, res) {
     let fs = require("fs");
-    let walkieTalkie = require("./pythonComs.js");
+    //update the local static image, *cheaper probably than s3*
 });
 
-app.get('/gameData', function(req, res) {
+app.post('/gameData', function(req, res) {
     let walkieTalkie = require("./pythonComs.js");
+    
+    //Get the data Dan's detector sent for the game data
     
 });
 
