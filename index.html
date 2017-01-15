@@ -47,8 +47,8 @@
                 socket.on('dan', function (data) {
                     //data.arrayInfo
                     console.log("dan's socket");
-                    console.log(data.arrayInfo);
-                    window.Game.grid.stringToGrid(data.arrayInfo);
+                    console.log(data.arrayInfo.data);
+                    window.Game.grid.stringToGrid(data.arrayInfo.data);
                 });
             </script>
             <script src="js/preloadjs-NEXT.min.js"></script>
