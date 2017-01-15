@@ -43,7 +43,7 @@
          }, 500, createjs.Ease.bounceOut).call(function(){  });
     }
     container.setChipType = function(type){
-        var color = "#ffffff";
+        var color = "#322931";
         this.type = type;
         switch(type){
             case(1): color = "#fdcc59"; break; 
