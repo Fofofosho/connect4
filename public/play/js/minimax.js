@@ -1,5 +1,3 @@
-//this is the algorithms to save the world
-var LinkedList = require('linkedlist');
 module.exports = {
     choice : { x: 0, y: 0 }, /*2d index (x,y) */
     score : function (game, depth) {

@@ -63,10 +63,25 @@
                 index = col+(row*cols);
             }
         }
-        if (array[row][col].type == 0){
+        if (this.getChipTypeAt(row,col) == 0){
              this.grid.getChildAt(index).setChipType(this.currentPlayer);
-             this.currentPlayer = this.currentPlayer == 1 ? 2 : 1;
+             this.currentPlayer = this.getCurrentPlayer(array);
         }
+    }
+    Game.prototype.getCurrentPlayer = function(array){
+        var human = 0;
+        var cpu = 0;
+        for (var row=0; row < array.length; row++){
+            for (var col=0; col < array[0].length; col++){
+                if (this.getChipTypeAt(row,col) == 1) human++;
+                else if (this.getChipTypeAt(row,col) == 2) cpu++;
+            }
+        }
+        return human == cpu ? 1 : 2; //human always goes first
+    }
+    Game.prototype.getChipTypeAt = function(row,col){
+        var array = this.grid.get2dArray();
+        return array[row][col].type;
     }
     Game.prototype.getWidth = function(){ return this.canvas.width; }
     Game.prototype.getHeight = function(){ return this.canvas.height; }
