@@ -1,4 +1,4 @@
-html { background-color:#ffffff; overflow: hidden; }
+html { background-color:#ffffff;  }
 body { margin:0; background-color: transparent; }
 canvas { display: block; width: 100%; height: auto; }
 img { max-width: 100%; }

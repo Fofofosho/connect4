@@ -53,7 +53,7 @@
         var array = this.grid.get2dArray();
         var cols = this.grid.cols;
         var rows = this.grid.rows;
-        var type = 0;
+        var type = 3; //start empty
         col = index % cols;
         row = Math.floor(index / cols);
         for (var r=0; r < rows; r++){

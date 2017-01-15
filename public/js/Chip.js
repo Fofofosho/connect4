@@ -7,14 +7,14 @@
         this.y = y;
         this.radius = radius;
         this.index = index;
-        this.type = 0;
+        this.type = 3; //start empty
         this.maxChipStyles = 2;
         this.shape_1 = new createjs.Shape();
         this.shape_2 = new createjs.Shape();
         this.shape_2.alpha = 0;
         this.shape_2.y = -420;
         this.shape_1.graphics.beginFill("#322931").drawCircle(0,0,this.radius);
-        this.shape_2.graphics.beginFill("#fdcc59").drawCircle(0,0,this.radius * 0.75);
+        this.shape_2.graphics.beginFill("rgba(0,0,0,0)").drawCircle(0,0,this.radius * 0.75);
         this.addChild(this.shape_1, this.shape_2);
         this.addListeners();
     }
@@ -46,7 +46,7 @@
         this.type = type;
         if (type == 1){ this.shape_2.graphics.beginFill("#fdcc59").drawCircle(0,0,this.radius * 0.75); }
         else if (type == 2){ this.shape_2.graphics.beginFill("#dd464c").drawCircle(0,0,this.radius * 0.75); }
-        else if (type == 3){ this.shape_2.alpha = 0; }
+        else if (type == 3){ this.shape_2.graphics.beginFill("rgba(0,0,0,0)").drawCircle(0,0,this.radius * 0.75); }
         else if (type == 4){ this.shape_2.graphics.beginFill("#1290bf").drawCircle(0,0,this.radius * 0.75); }
         this.startTween();
     }
