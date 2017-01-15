@@ -66,7 +66,7 @@
                 index = col+(row*cols);
             }
         }
-        if (this.getChipTypeAt(row,col) == 0){
+        if (this.getChipTypeAt(row,col) == 3){
              this.grid.getChildAt(index).setChipType(this.currentPlayer);
              this.currentPlayer = this.getCurrentPlayer(array);
         }

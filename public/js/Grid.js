@@ -71,7 +71,7 @@
 
         for (var row=0; row < rows; row++){
             for (var col=0; col < cols; col++){
-                this.getChildAt(col+(row*cols)).setChipType(window.Game.currentPlayer);
+                this.getChildAt(col+(row*cols)).setChipType(obj[row][col]);
                 window.Game.currentPlayer = window.Game.getCurrentPlayer(obj);
             }
         }
