@@ -53,10 +53,12 @@
         var array = this.grid.get2dArray();
         var cols = this.grid.cols;
         var rows = this.grid.rows;
+        var type = 0;
         col = index % cols;
         row = Math.floor(index / cols);
         for (var r=0; r < rows; r++){
-            if (array[r][col].type != 3 && r > 0){
+            type = array[r][col].type;
+            if ((type == 1 || type == 2) && r > 0){
                 row = r-1;
                 index = col+(row*cols);
                 break;
@@ -66,7 +68,7 @@
                 index = col+(row*cols);
             }
         }
-        if (this.getChipTypeAt(row,col) == 3){
+        if (this.getChipTypeAt(row,col) == 3){ //if empty space
              this.grid.getChildAt(index).setChipType(this.currentPlayer);
              this.currentPlayer = this.getCurrentPlayer(array);
         }

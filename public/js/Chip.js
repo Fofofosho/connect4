@@ -43,15 +43,12 @@
          }, 500, createjs.Ease.bounceOut).call(function(){  });
     }
     container.setChipType = function(type){
-        var color = "#322931";
         this.type = type;
-        switch(type){
-            case(1): color = "#fdcc59"; break; //yellow
-            case(2): color = "#dd464c"; break; //red
-            case(3): color = "#322931"; break; //empty (dark)
-            case(4): color = "#1290bf"; break; //available (blue)
-        }
-        this.shape_2.graphics.beginFill(color).drawCircle(0,0,this.radius * 0.75);
+        if (type == 1){ this.shape_2.graphics.beginFill("#fdcc59").drawCircle(0,0,this.radius * 0.75); }
+        else if (type == 2){ this.shape_2.graphics.beginFill("#dd464c").drawCircle(0,0,this.radius * 0.75); }
+        else if (type == 3){ this.shape_2.alpha = 0; }
+        else if (type == 4){ this.shape_2.graphics.beginFill("#1290bf").drawCircle(0,0,this.radius * 0.75); }
+        
         this.startTween();
     }
     container.updateCursor = function(){ this.cursor="pointer"; }
