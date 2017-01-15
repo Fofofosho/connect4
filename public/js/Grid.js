@@ -79,7 +79,7 @@
     }
     container.chkLine = function(a,b,c,d) {
         // Check first cell non-zero and all cells match
-        return ((a != 0) && (a ==b) && (a == c) && (a == d));
+        return ((a != 3 && a != 4) && (a ==b) && (a == c) && (a == d));
     }
     
     container.chkWinner = function(bd) {
