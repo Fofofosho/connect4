@@ -56,7 +56,7 @@
         col = index % cols;
         row = Math.floor(index / cols);
         for (var r=0; r < rows; r++){
-            if (array[r][col].type != 0 && r > 0){
+            if (array[r][col].type != 3 && r > 0){
                 row = r-1;
                 index = col+(row*cols);
                 break;
