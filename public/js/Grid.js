@@ -75,7 +75,6 @@
                 window.Game.currentPlayer = window.Game.getCurrentPlayer(obj);
             }
         }
-        
         //this.checkForVictory();
     }
     container.checkForVictory = function(row,col){
