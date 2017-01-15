@@ -70,7 +70,7 @@
         }
         if (this.getChipTypeAt(row,col) == 3){ //if empty space
              this.grid.getChildAt(index).setChipType(this.currentPlayer);
-             this.currentPlayer = this.getCurrentPlayer(array);
+             this.currentPlayer = this.getCurrentPlayer(this.grid.get2dArray());
         }
         console.log(this.grid.chkWinner(this.grid.get2dArray()));
     }
