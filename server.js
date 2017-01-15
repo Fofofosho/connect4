@@ -33,6 +33,7 @@ app.post('/imgData', function(req, res) {
 
 app.post('/gameData', function(req, res) {
     //Get the data Dan's detector sent for the game data
+    console.log(req);
     console.log(req.body);
     let dansBody = req.body;
     
