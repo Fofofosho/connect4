@@ -75,6 +75,7 @@
                 window.Game.currentPlayer = window.Game.getCurrentPlayer(obj);
             }
         }
+        if (window.Game.currentPlayer == 2){ window.Game.perfectPlayer.check(); }
         console.log(this.chkWinner(this.get2dArray()));
     }
     container.chkLine = function(a,b,c,d) {
@@ -106,12 +107,13 @@
         for (var r = 3; r < 6; r++)
             for (var c = 0; c < 4; c++)
                 if (this.chkLine(bd[r][c].type, bd[r-1][c+1].type, bd[r-2][c+2].type, bd[r-3][c+3].type))
-                    this.showWinner(bd[r][c].type);
+                    this.showWinner(bd[r][c].type); // hell yeah
     
         return 0;
     }
     container.showWinner = function(player){
         alert("player "+player+" wins!");
+        window.Game.currentPlayer = 1;
         this.reset();
     }
 

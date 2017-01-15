@@ -5,7 +5,10 @@
     }
     function tick(event) {
         this.delta = event.delta; //elapsedTimeInMS / 1000msPerSecond
-        if (window.Game.bRestart.isClicked()) window.Game.grid.reset();
+        if (window.Game.bRestart.isClicked()){
+            this.currentPlayer = 1;
+            window.Game.grid.reset();
+        }
         window.Game.grid.tick(delta);
         window.Game.stage.update();
     }

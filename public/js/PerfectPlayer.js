@@ -11,7 +11,7 @@
     //update
     container.tick = function (delta) { }
     container.check = function(){
-        
+        console.log('checking minimax');
     }
     
     window.PerfectPlayer = createjs.promote(PerfectPlayer, "Container");
