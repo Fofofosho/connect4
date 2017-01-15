@@ -41,7 +41,7 @@ app.post('/gameData', function(req, res) {
         io.emit("picUpdate", {
             "objectName": `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
         });
-    }, 1000);
+    }, 500);
     
     res.end();
 });
