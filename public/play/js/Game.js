@@ -30,6 +30,9 @@
         this.stage.removeAllChildren(); //clean up stage
         if (this.grid == null) this.grid = new Grid(); //initialize game objects
         if (this.bRestart == null) this.bRestart = new Button("x",this.getWidth()/2,this.getHeight()-27,32,32,"#4c3f4b","#262026","#ffffff","#ffffff");
+        if (this.perfectPlayer == null) this.perfectPlayer = new PerfectPlayer();
+        console.log(this.bRestart);
+        console.log(this.perfectPlayer);
         this.stage.clear(); //ensure stage is blank and add the player
 
         //draw according to game view
