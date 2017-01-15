@@ -48,7 +48,6 @@
         else if (type == 2){ this.shape_2.graphics.beginFill("#dd464c").drawCircle(0,0,this.radius * 0.75); }
         else if (type == 3){ this.shape_2.alpha = 0; }
         else if (type == 4){ this.shape_2.graphics.beginFill("#1290bf").drawCircle(0,0,this.radius * 0.75); }
-        
         this.startTween();
     }
     container.updateCursor = function(){ this.cursor="pointer"; }
