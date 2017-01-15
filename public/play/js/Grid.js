@@ -3,7 +3,7 @@
     //constructor
     function Grid() {
         this.Container_constructor();
-        this.setupGrid(7, 6, 20, 12);
+        this.setupGrid(7, 6, 20, 12, 24);
     }
 
     var container = createjs.extend(Grid, createjs.Container); //instance of class
@@ -11,41 +11,33 @@
     //check all Grid inside this container
     container.tick = function (delta) {
         for (var i=0; i < this.children.length; i++){
-            this.getChildAt(i).tick(delta);
+            if (this.getChildAt(i).radius != null){
+                this.getChildAt(i).tick(delta);
+            }
         }
     }
 
     //add Chip containers to this container
-    container.addChip = function(x, y, id, index){ this.addChild(new Chip(x,y,id,index)); }
+    container.addChip = function(x, y, radius, index){ this.addChild(new Chip(x, y, radius, index)); }
     container.removeAllGrid = function(){ this.removeAllChildren(); }
-    container.setupGrid = function(cols, rows, xPad, yPad){
-        //initialize cards by rows and columns
-        this.totalMatches = (cols * rows) / 2;
-        this.totalOptions = 0; //increase this number when more graphics exist in manifest
-        this.currentMatch = 0; //reset current matches
-        this.playerMatches = 0; //reset matches possible
-
-        var radius = 48;
-        //add cards to deck
-        var index = 0;
+    container.setupGrid = function(cols, rows, xPad, yPad, radius){
+        //add new chips to screen
+        this.cols = cols;
+        this.rows = rows;
         for (var row=0; row < rows; row++){
             for (var col=0; col < cols; col++){
-                this.addChip(col*((radius+xPad)), row*((radius+yPad)), radius);
+                this.addChip(col*(((radius*2)+xPad)), row*(((radius*2)+yPad)), radius, col+(row*cols));
             }
         }
-
         //set table coordinates
         this.x = window.Game.getWidth() / 2;
         this.y = window.Game.getHeight() / 2;
-        this.regX = ((radius + xPad) * (cols - 1))/2;
-        this.regY = ((radius + yPad) * (rows - 1))/2;
+        this.regX = (((radius * 2) + xPad) * (cols - 1))/2;
+        this.regY = (((radius * 2) + yPad) * (rows - 1))/2;
     }
     container.resetAllTweens = function(){
         var length = this.children.length;
         for (var i=0; i < length; i++){ this.getChildAt(i).hideTween(i*100); }
-        window.Game.endGraphics.fadeIn();
-        window.Game.checkHighScore(window.timer.stopTime);
-        this.playerMatches = 0;
     }
 
     window.Grid = createjs.promote(Grid, "Container");
