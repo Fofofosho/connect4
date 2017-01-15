@@ -16,6 +16,9 @@ const objectBucketName = 'connect4-hackaz17';
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // viewed at http://localhost:8080
 app.get('/', function(req, res) {
