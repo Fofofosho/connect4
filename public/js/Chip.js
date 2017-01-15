@@ -46,9 +46,10 @@
         var color = "#322931";
         this.type = type;
         switch(type){
-            case(1): color = "#fdcc59"; break; 
-            case(2): color = "#dd464c"; break;
-            case(3): color = "transparent"; break;
+            case(1): color = "#fdcc59"; break; //yellow
+            case(2): color = "#dd464c"; break; //red
+            case(3): color = "#322931"; break; //empty (dark)
+            case(4): color = "#1290bf"; break; //available (blue)
         }
         this.shape_2.graphics.beginFill(color).drawCircle(0,0,this.radius * 0.75);
         this.startTween();
