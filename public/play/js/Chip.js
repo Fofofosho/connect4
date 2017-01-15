@@ -12,6 +12,7 @@
         this.shape_1 = new createjs.Shape();
         this.shape_2 = new createjs.Shape();
         this.shape_2.alpha = 0;
+        this.shape_2.y = -420;
         this.shape_1.graphics.beginFill("#322931").drawCircle(0,0,this.radius);
         this.shape_2.graphics.beginFill("#fdcc59").drawCircle(0,0,this.radius * 0.75);
         this.addChild(this.shape_1, this.shape_2);
@@ -35,9 +36,11 @@
     container.rollOver = function(evt) { this.updateCursor(); }
     container.rollOut = function(evt) { this.updateCursor(); }
     container.startTween = function(){
+        var y2 = this.shape_1.y;
         createjs.Tween.get(this.shape_2, {override:false}).to({ 
+            y : y2,
             alpha: 1
-         }, 250, createjs.Ease.sineIn).call(function(){  });
+         }, 500, createjs.Ease.bounceOut).call(function(){  });
     }
     container.setChipType = function(type){
         var color = "#ffffff";

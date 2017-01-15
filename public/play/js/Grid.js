@@ -3,7 +3,7 @@
     //constructor
     function Grid() {
         this.Container_constructor();
-        this.setupGrid(7, 6, 20, 12, 24);
+        this.reset();
     }
 
     var container = createjs.extend(Grid, createjs.Container); //instance of class
@@ -34,6 +34,10 @@
         this.y = window.Game.getHeight() / 2;
         this.regX = (((radius * 2) + xPad) * (cols - 1))/2;
         this.regY = (((radius * 2) + yPad) * (rows - 1))/2;
+    }
+    container.reset = function(){
+        this.removeAllChildren();
+        this.setupGrid(7, 6, 20, 12, 24);
     }
     container.resetAllTweens = function(){
         var length = this.children.length;
