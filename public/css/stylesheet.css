@@ -1,7 +1,7 @@
 html { background-color:#ffffff; overflow: hidden; }
 body { margin:0; background-color: transparent; }
 canvas { display: block; width: 100%; height: auto; }
+img { max-width: 100%; }
 div.content { max-width: 640px; margin: 0 auto; }
-.row {
-    text-align: center;
-}
+.row { text-align: center; }
+.col-sm-6 { padding: 0 !important; }
