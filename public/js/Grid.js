@@ -75,6 +75,28 @@
                 window.Game.currentPlayer = window.Game.getCurrentPlayer(obj);
             }
         }
+        
+        //this.checkForVictory();
+    }
+    container.checkForVictory = function(row,col){
+        if(this.getAdj(row,col,0,1)+this.getAdj(row,col,0,-1) > 2){ return true; } 
+        else {
+            if(this.getAdj(row,col,1,0) > 2){ return true; } 
+            else {
+                if(this.getAdj(row,col,-1,1)+this.getAdj(row,col,1,-1) > 2){ return true; } 
+                else {
+                    if(this.getAdj(row,col,1,1)+this.getAdj(row,col,-1,-1) > 2){ return true; } 
+                    else { return false; }
+                }
+            }
+        }
+    }
+    container.getAdj = function(row,col,row_inc,col_inc){
+        if(this.cellVal(row,col) == this.cellVal(row+row_inc,col+col_inc)){ return 1+this.getAdj(row+row_inc,col+col_inc,row_inc,col_inc); } 
+        else { return 0; }
+    }
+    container.cellVal = function(row,col){
+        return this.get2dArray()[row][col];
     }
 
     window.Grid = createjs.promote(Grid, "Container");
