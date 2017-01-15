@@ -39,6 +39,25 @@
         var length = this.children.length;
         for (var i=0; i < length; i++){ this.getChildAt(i).hideTween(i*100); }
     }
+    container.get2dArray = function(){
+        var array = [];
+        for (var row=0; row < this.rows; row++){
+            array[row] = [];
+            for (var col=0; col < this.cols; col++){
+                var i = col+(row*this.cols);
+                array[row][col] = this.getChildAt(i);
+            }
+        }
+        return array;
+    }
+    container.arrayToString = function(array){
+        var arrayString = "";
+        for (var row=0; row < this.rows; row++){
+            for (var col=0; col < this.cols; col++){ arrayString += array[row][col].type; }
+            if (row < array.length-1) arrayString += "\r\n"; //prevent last return & next line
+        }
+        return arrayString;
+    }
 
     window.Grid = createjs.promote(Grid, "Container");
 }(window));

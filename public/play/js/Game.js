@@ -12,6 +12,7 @@
     //public functions
     Game.prototype.init = function() {
         // setup everything yo
+        this.currentPlayer = 1;
         this.canvas = document.getElementById("gameCanvas");
         this.stage = new createjs.Stage(this.canvas);
         this.stage.enableMouseOver(60);
@@ -44,11 +45,26 @@
         }
     }
     Game.prototype.setChip = function(index){ 
+        var array = this.grid.get2dArray();
         var cols = this.grid.cols;
         var rows = this.grid.rows;
         col = index % cols;
         row = Math.floor(index / cols);
-        console.log("col: "+col+", row: "+row);
+        for (var r=0; r < rows; r++){
+            if (array[r][col].type != 0 && r > 0){
+                row = r-1;
+                index = col+(row*cols);
+                break;
+            }
+            if (r >= (rows-1)){
+                row = r;
+                index = col+(row*cols);
+            }
+        }
+        if (array[row][col].type == 0){
+             this.grid.getChildAt(index).setChipType(this.currentPlayer);
+             this.currentPlayer = this.currentPlayer == 1 ? 2 : 1;
+        }
     }
     Game.prototype.getWidth = function(){ return this.canvas.width; }
     Game.prototype.getHeight = function(){ return this.canvas.height; }

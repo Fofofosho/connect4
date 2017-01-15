@@ -7,7 +7,7 @@
         this.y = y;
         this.radius = radius;
         this.index = index;
-        this.flipped = false;
+        this.type = 0;
         this.maxChipStyles = 2;
         this.shape_1 = new createjs.Shape();
         this.shape_2 = new createjs.Shape();
@@ -31,41 +31,25 @@
         this.on("rollout", function(evt){ this.rollOut(evt); });
     }
     container.pressMove = function(evt) {  }
-    container.click = function(evt) { 
-        window.Game.setChip(this.index); //let the game decide to set a chip
-    }
-    container.rollOver = function(evt) { this.cursor="pointer"; }
-    container.rollOut = function(evt) { }
+    container.click = function(evt) { window.Game.setChip(this.index); }
+    container.rollOver = function(evt) { this.updateCursor(); }
+    container.rollOut = function(evt) { this.updateCursor(); }
     container.startTween = function(){
         createjs.Tween.get(this.shape_2, {override:false}).to({ 
             alpha: 1
          }, 250, createjs.Ease.sineIn).call(function(){  });
     }
-    container.resetTween = function(delay, lastDelay){
-        delay = delay != null ? delay : 0;
-        this.flipped = false;
-        createjs.Tween.get(this, {override:false}).wait(delay).to({scaleX: 0, scaleY: 1.25}, 250, createjs.Ease.sineIn)
-        .call(function(){ //reset original image
-            this.removeAllChildren();
-            this.addChild(this.graphic);
-            this.flipped = false;
-            if (delay == lastDelay){
-                console.log('flipped');
-            }
-        })
-        .to({scaleX: 1, scaleY: 1}, 250, createjs.Ease.sineOut);
+    container.setChipType = function(type){
+        var color = "#ffffff";
+        this.type = type;
+        switch(type){
+            case(1): color = "#fdcc59"; break; 
+            case(2): color = "#dd464c"; break; 
+        }
+        this.shape_2.graphics.beginFill(color).drawCircle(0,0,this.radius * 0.75);
+        this.startTween();
     }
-    container.hideTween = function(delay){
-        delay = delay != null ? delay : 0;
-        this.flipped = false;
-        createjs.Tween.get(this, {override:false}).wait(delay).to({scaleX: 0, scaleY: 1.25}, 250, createjs.Ease.sineIn)
-        .call(function(){ //reset original image
-            this.removeAllChildren();
-            this.addChild(this.graphic);
-            this.flipped = false;
-        })
-        .to({scaleX: 1, scaleY: 1, alpha: 0 }, 250, createjs.Ease.sineOut);
-    }
+    container.updateCursor = function(){ this.cursor="pointer"; }
 
     window.Chip = createjs.promote(Chip, "Container");
 }(window));
