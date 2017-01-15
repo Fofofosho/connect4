@@ -32,10 +32,11 @@ app.post('/imgData', function(req, res) {
 });
 
 app.post('/gameData', function(req, res) {
-    let walkieTalkie = require("./pythonComs.js");
-    
     //Get the data Dan's detector sent for the game data
+    console.log(req.body);
+    let dansBody = req.body;
     
+    res.end();
 });
 
 io.on('connection', function(socket) {
@@ -43,6 +44,9 @@ io.on('connection', function(socket) {
     io.emit("picUpdate", {
         objectName: `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
     });
+    
+    // setInterval(readIncomingMessages(), 20000);
+    readIncomingMessages();
 });
 
 function checkDate() {
@@ -70,28 +74,29 @@ function checkDate() {
     }, 5000);
 }
 
-http.listen(8080, function () {
-    console.log('Listening on 8080');
-    
+function readIncomingMessages() {
     let getParams = {
-        QueueUrl : "https://sqs.us-west-2.amazonaws.com/107655416657/the-queue",
-        VisibilityTimeout: 60,
-        WaitTimeSeconds: 120
+        "QueueUrl" : "https://sqs.us-west-2.amazonaws.com/107655416657/the-queue",
+        "VisibilityTimeout": 60,
+        "WaitTimeSeconds": 20
     }
-    while(true) {
-        sqs.receiveMessage(getParams, function(err, data) {
-            if (err) {
-                console.log(err, err.stack);
-            }
-            else {
-                console.log("Queue: successfully received");
-                io.emit("picUpdate", {
-                    objectName: `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
-                });
-                
+    
+    sqs.receiveMessage(getParams, function(err, data) {
+        if (err) {
+            console.log(err, err.stack);
+        }
+        else {
+            console.log("Queue: successfully received");
+            console.log(data);
+            
+            io.emit("picUpdate", {
+                objectName: `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
+            });
+            
+            if(data.Messages) {
                 let delParams = {
-                    QueueUrl : getParams.QueueUrl,
-                    ReceiptHandle : data.ReceiptHandle
+                    "QueueUrl" : getParams.QueueUrl,
+                    "ReceiptHandle" : data.Messages[0].ReceiptHandle
                 }
                 sqs.deleteMessage(delParams, function(err, data) {
                     if(err) {
@@ -100,29 +105,12 @@ http.listen(8080, function () {
                     else {
                         console.log("Queue: successfully deleted");
                     }
-                })
+                });
             }
-        });
-    }
-    // let lastCheck = new Date();
-    // setInterval(function() {
-    //     console.log("Checking s3");
-    //     let params = {
-    //         Bucket: objectBucketName, /* required */
-    //         Key: 'poop.png', /* required */
-    //         IfModifiedSince: lastCheck,
-    //     }
-    //     s3.headObject(params, function(err, data) {
-    //         if(err) {
-    //             console.log("ERROR with GET " + err);
-    //         }
-    //         else {
-    //             console.log("send socket picUpdate to client");
-    //             lastCheck = new Date();
-    //             io.emit("picUpdate", {
-    //                 objectName: `https://s3-us-west-2.amazonaws.com/${objectBucketName}/${params.key}`
-    //             });
-    //         }
-    //     });
-    // }, 5000);
+        }
+    });
+}
+
+http.listen(8080, function () {
+    console.log('Listening on 8080');
 });
