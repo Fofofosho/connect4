@@ -27,8 +27,11 @@
                 let socket = io();
                 socket.on('picUpdate', function (data) {
                     console.log("client socket response");
+                    document.getElementById("detectorImg").src = '';
                     console.log(data);
-                    document.getElementById("detectorImg").src = data.objectName;
+                    setTimeout(function() {
+                        document.getElementById("detectorImg").src = data.objectName;
+                    }, 500);
                 });
                 
                 socket.on('dan', function (data) {
