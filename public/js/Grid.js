@@ -65,7 +65,7 @@
     
     container.stringToGrid = function(str) {
         console.log("Grid: stringToGrid -- ");
-        let obj = json.parse(str);
+        let obj = JSON.parse(str);
         console.log(obj);
     }
 
