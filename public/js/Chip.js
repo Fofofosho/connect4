@@ -47,7 +47,8 @@
         this.type = type;
         switch(type){
             case(1): color = "#fdcc59"; break; 
-            case(2): color = "#dd464c"; break; 
+            case(2): color = "#dd464c"; break;
+            case(3): color = "#322931"; break;
         }
         this.shape_2.graphics.beginFill(color).drawCircle(0,0,this.radius * 0.75);
         this.startTween();
