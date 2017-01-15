@@ -5,12 +5,17 @@
 <link rel="stylesheet" href="css/stylesheet.css">
 <script type="text/javascript" src="js/index.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src=""></script>
 <script>
     let socket = io();
     socket.on('picUpdate', function (data) {
         console.log("client socket response");
         console.log(data);
         document.getElementById("detectorImg").src = data.objectName;
+    });
+    
+    socket.on('dan', function (data) {
+        //data.arrayInfo
     });
 </script>
 </head>

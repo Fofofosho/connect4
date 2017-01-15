@@ -39,6 +39,9 @@ app.post('/gameData', function(req, res) {
     console.log(req);
     console.log(req.body);
     let dansBody = req.body;
+    io.emit('dan', {
+        "arrayInfo": dansBody
+    });
     
     res.end();
 });
@@ -46,7 +49,7 @@ app.post('/gameData', function(req, res) {
 io.on('connection', function(socket) {
     console.log("server socket established");
     io.emit("picUpdate", {
-        objectName: `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
+        "objectName": `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
     });
     
     // setInterval(readIncomingMessages(), 20000);
@@ -60,9 +63,9 @@ function checkDate() {
     setInterval(function() {
         console.log("Checking s3");
         let params = {
-            Bucket: objectBucketName, /* required */
-            Key: 'poop.png', /* required */
-            IfModifiedSince: lastCheck,
+            "Bucket": objectBucketName, /* required */
+            "Key": 'poop.png', /* required */
+            "IfModifiedSince": lastCheck,
         }
         s3.headObject(params, function(err, data) {
             if(err) {
