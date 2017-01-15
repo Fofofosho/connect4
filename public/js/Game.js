@@ -72,6 +72,7 @@
              this.grid.getChildAt(index).setChipType(this.currentPlayer);
              this.currentPlayer = this.getCurrentPlayer(array);
         }
+        console.log(this.grid.chkWinner(this.grid.get2dArray()));
     }
     Game.prototype.getCurrentPlayer = function(array){
         var human = 0;
