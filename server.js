@@ -38,21 +38,17 @@ app.post('/gameData', function(req, res) {
     });
     
     setTimeout(function() {
-        io.emit("picUpdate", {
-            "objectName": `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
-        });
-    }, 500);
+        // io.emit("picUpdate", {
+        //     "objectName": `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
+        // });
+        readIncomingMessages();
+    }, 2000);
     
     res.end();
 });
 
 io.on('connection', function(socket) {
     console.log("server socket established");
-    io.emit("picUpdate", {
-        "objectName": `https://s3-us-west-2.amazonaws.com/${objectBucketName}/poop.png`
-    });
-    
-    readIncomingMessages();
 });
 
 function readIncomingMessages() {
