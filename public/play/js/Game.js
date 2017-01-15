@@ -5,6 +5,7 @@
     }
     function tick(event) {
         this.delta = event.delta; //elapsedTimeInMS / 1000msPerSecond
+        if (window.Game.bRestart.isClicked()) window.Game.grid.reset();
         window.Game.grid.tick(delta);
         window.Game.stage.update();
     }
@@ -28,6 +29,7 @@
     Game.prototype.setStage = function() {
         this.stage.removeAllChildren(); //clean up stage
         if (this.grid == null) this.grid = new Grid(); //initialize game objects
+        if (this.bRestart == null) this.bRestart = new Button("x",this.getWidth()/2,this.getHeight()-27,32,32,"#4c3f4b","#262026","#ffffff","#ffffff");
         this.stage.clear(); //ensure stage is blank and add the player
 
         //draw according to game view
@@ -35,7 +37,7 @@
         this.board = new createjs.Shape();
         this.background.graphics.beginFill("#322931").drawRect(0,0,640,480);
         this.board.graphics.beginRadialGradientFill(["#1290bf","#322931"],[0,1],320,54,0,320,54,640).drawRect(80,54,480,372);
-        this.stage.addChild(this.background, this.board, this.grid);
+        this.stage.addChild(this.background, this.board, this.grid, this.bRestart);
 
         //start game timer
         if (!createjs.Ticker.hasEventListener("tick")) {
