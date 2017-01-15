@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport' />
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+        <title>Connect 4</title>
+    </head>
+    <body>
+        <div class="content">
+            <canvas id="gameCanvas" width="640" height="480"></canvas>
+        </div>
+        
+        <script src="js/preloadjs-NEXT.min.js"></script>
+        <script src="js/soundjs-NEXT.min.js"></script>
+        <script src="js/easeljs-NEXT.combined.js"></script>
+        <script src="js/tweenjs-NEXT.min.js"></script>
+
+        <!-- Game 'Classes'  -->
+        <script type="text/javascript" src="js/AssetManager.js"></script>
+        <script type="text/javascript" src="js/Grid.js"></script>
+        <script type="text/javascript" src="js/Chip.js"></script>
+        <script type="text/javascript" src="js/Game.js"></script>
+        <script>if (window.Game == null){ document.getElementById('content').innerHTML = "<p style='text-align: center; width: 100%;'>We're sorry, but your browser is a bit too old to play this game.</p>"; }</script>
+    </body>
+</html>
