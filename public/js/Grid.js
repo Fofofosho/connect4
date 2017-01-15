@@ -64,9 +64,17 @@
     }
     
     container.stringToGrid = function(str) {
-        console.log("Grid: stringToGrid -- ");
         let obj = JSON.parse(str);
-        console.log(obj);
+        let rows = obj.length;
+        let cols = obj[0].length;
+        this.reset();
+
+        for (var row=0; row < rows; row++){
+            for (var col=0; col < cols; col++){
+                this.getChildAt(col+(row*cols)).setChipType(window.Game.currentPlayer);
+                window.Game.currentPlayer = window.Game.getCurrentPlayer(obj);
+            }
+        }
     }
 
     window.Grid = createjs.promote(Grid, "Container");
