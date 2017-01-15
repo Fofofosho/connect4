@@ -62,6 +62,12 @@
         }
         return arrayString;
     }
+    
+    container.stringToGrid = function(str) {
+        console.log("Grid: stringToGrid -- ");
+        let obj = json.parse(str);
+        console.log(obj);
+    }
 
     window.Grid = createjs.promote(Grid, "Container");
 }(window));
